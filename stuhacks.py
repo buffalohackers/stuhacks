@@ -1,3 +1,5 @@
+import calendar
+import datetime
 import json
 import os
 
@@ -8,17 +10,17 @@ app = flask.Flask(__name__)
 
 @app.route("/")
 def index():
-	resp = dict()
+	resp_hackathons = list()
 	hackathons = [0]
 	p = {'limit': 100, 'offset': 0}
 	while hackathons:
 		r = requests.get('https://www.hackerleague.org/api/v1/hackathons.json', params=p)
 		hackathons = r.json()
 		for hackathon in hackathons:
-			if hackathon['students_only']:
-				resp[hackathon['id']] = hackathon['name']
+			if hackathon['students_only'] and hackathon['state'] != 'complete':
+				resp_hackathons.append(hackathon)
 		p['offset'] += 1
-	return '<br/>'.join(resp.values())
+	return flask.render_template('index.html', hackathons=resp_hackathons)
 
 if __name__ == "__main__":
 	app.run()
