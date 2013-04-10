@@ -33,8 +33,31 @@
     <div class="container">
 
       <h1>Upcoming Student Hackathons</h1>
-<h3>Powered by <a href="https://www.hackerleague.org/" target="_blank">HackerLeague</a></h3>
+      <h3>Powered by <a href="https://www.hackerleague.org/" target="_blank">HackerLeague</a></h3>
+
+{%- for row in hackathons|batch(3) %}
+<div class="row-fluid">
+{%- for col in row %}
+<div class="span3">
+    <h4>{{ col['name'] }}</h4>
+    <p><strong>Starts: </strong><script> 
+        document.write(moment('{{ col['start_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));</script></p>
+    <p><strong>Ends: </strong><script>
+        document.write(moment('{{ col['end_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));</script></p>
+    <p><strong>Where: </strong>{{ col['location']['city'] }}, {{ col['location']['state'] }}</p>
+    <p><a href="{{ col['url'] }}" target="_blank">More on HL</a></p>
+    {% if col['external_url'] %}
+    <p><a href="{{ col['external_url'] }}" target="_blank">External Site</a></p>
+    {% endif %}
+    </div>
+{%- endfor %}
+</div>
+{%- endfor %}
+
+<!--
 {% for h in hackathons %}
+
+
 <p>
 {% if h['external_url'] %}
 <a href="{{ h['external_url'] }}" target="_blank">{{ h['name'] }}</a>
@@ -43,28 +66,26 @@
 {% endif %}
 starts on
 <script>
-document.write(moment('{{ h['start_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));
 </script> and ends on 
 <script>
-document.write(moment('{{ h['end_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));
 </script>
 </p>
 {% endfor %}
-
+-->
     </div> <!-- /container -->
 
     <!-- Placed at the end of the document so the pages load faster -->
+
 <!-- But we don't use these, and I'm lazy and it's 5:40am
     <script src="./Bootstrap, from Twitter_files/jquery.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-transition.js"></script>
+     <script src="{{ url_for('static', filename='js/bootstrap-button.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-dropdown.js') }}"></script>   <script src="./Bootstrap, from Twitter_files/bootstrap-transition.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-alert.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-modal.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-dropdown.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-scrollspy.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-tab.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-tooltip.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-popover.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-button.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-collapse.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-carousel.js"></script>
     <script src="./Bootstrap, from Twitter_files/bootstrap-typeahead.js"></script>
