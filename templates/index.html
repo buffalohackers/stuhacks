@@ -40,6 +40,7 @@
 {%- for col in row %}
 <div class="span3">
     <h4>{{ col['name'] }}</h4>
+    <p>{{ col['description']|truncate }}</p>
     <p><strong>Starts: </strong><script> 
         document.write(moment('{{ col['start_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));</script></p>
     <p><strong>Ends: </strong><script>
@@ -54,24 +55,6 @@
 </div>
 {%- endfor %}
 
-<!--
-{% for h in hackathons %}
-
-
-<p>
-{% if h['external_url'] %}
-<a href="{{ h['external_url'] }}" target="_blank">{{ h['name'] }}</a>
-{% else %}
-<a href="{{ h['url'] }}" target="_blank">{{ h['name'] }}</a>
-{% endif %}
-starts on
-<script>
-</script> and ends on 
-<script>
-</script>
-</p>
-{% endfor %}
--->
     </div> <!-- /container -->
 
     <!-- Placed at the end of the document so the pages load faster -->
