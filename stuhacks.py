@@ -8,7 +8,7 @@ import requests
 
 app = flask.Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def index():
 	resp_hackathons = list()
 	hackathons = [0]
@@ -22,6 +22,10 @@ def index():
 		p['offset'] += 1
 	resp_hackathons.reverse()
 	return flask.render_template('index.html', hackathons=resp_hackathons)
+
+@app.route('/about')
+def about():
+	return flask.render_template('about.html')
 
 if __name__ == "__main__":
 	app.run()

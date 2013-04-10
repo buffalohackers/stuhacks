@@ -11,7 +11,6 @@
       }
     </style>
     <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet">
-<script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
 
   </head>
 
@@ -28,7 +27,7 @@
           <a class="brand" href="http://stuhacks.herokuapp.com">StuHacks</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="http://stuhacks.herokuapp.com/about">About</a></li>
+              <li><a href="http://stuhacks.herokuapp.com#about">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -37,24 +36,8 @@
 
     <div class="container">
 
-      <h1>Upcoming Student Hackathons</h1>
-<h3>Powered by <a href="https://www.hackerleague.org/" target="_blank">HackerLeague</a></h3>
-{% for h in hackathons %}
-<p>
-{% if h['external_url'] %}
-<a href="{{ h['external_url'] }}" target="_blank">{{ h['name'] }}</a>
-{% else %}
-<a href="{{ h['url'] }}" target="_blank">{{ h['name'] }}</a>
-{% endif %}
-starts on
-<script>
-document.write(moment('{{ h['start_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));
-</script> and ends on 
-<script>
-document.write(moment('{{ h['end_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));
-</script>
-</p>
-{% endfor %}
+      <h1>StuHacks: Upcoming Student Hackathons</h1>
+<p>StuHacks was thrown together in a few hours by the <a href="https://github.com/buffalohackers" target="_blank">Buffalo Hackers</a>. We like going to hackathons, but finding student hackathons on <a href="https://www.hackerleague.org" target="_blank">HackerLeague</a> can be a pain sometimes. The rest is history.</p>
 
     </div> <!-- /container -->
 
