@@ -11,6 +11,7 @@
       }
     </style>
     <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
 
   </head>
 
@@ -46,7 +47,13 @@
 {% else %}
 <a href="{{ h['url'] }}" target="_blank">{{ h['name'] }}</a>
 {% endif %}
-starts on {{ h['start_time'] }} and ends on {{ h['end_time'] }}
+starts on
+<script>
+document.write(moment('{{ h['start_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));
+</script> and ends on 
+<script>
+document.write(moment('{{ h['end_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));
+</script>
 </p>
 {% endfor %}
 

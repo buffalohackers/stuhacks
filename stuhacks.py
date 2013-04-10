@@ -20,7 +20,7 @@ def index():
 			if hackathon['students_only'] and hackathon['state'] != 'complete':
 				resp_hackathons.append(hackathon)
 		p['offset'] += 1
-	return flask.render_template('index.html', hackathons=resp_hackathons)
+	return flask.render_template('index.html', hackathons=resp_hackathons.reverse())
 
 if __name__ == "__main__":
 	app.run()
