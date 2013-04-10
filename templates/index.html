@@ -40,7 +40,14 @@
 <h2>Brought to you by the <a href="http://buffalohackers.com/" target="_blank">Buffalo Hackers</a></h2>
 <h3>Powered by <a href="https://www.hackerleague.org/" target="_blank">HackerLeague</a></h3>
 {% for h in hackathons %}
-<p>{{ h['name'] }} starts on {{ h['start_time'] }} and ends on {{ h['end_time'] }}</p>
+<p>
+{% if h['external_url'] %}
+<a href="{{ h['external_url'] }}" target="_blank">{{ h['name'] }}</a>
+{% else %}
+<a href="{{ h['url'] }}" target="_blank">{{ h['name'] }}</a>
+{% endif %}
+starts on {{ h['start_time'] }} and ends on {{ h['end_time'] }}
+</p>
 {% endfor %}
 
     </div> <!-- /container -->
