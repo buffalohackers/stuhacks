@@ -21,6 +21,7 @@ def index():
                 resp_hackathons.append(hackathon)
             elif hackathon['state'] == 'complete':
                 complete = True
+                break
         p['offset'] += 1
     resp_hackathons = sorted(resp_hackathons, key=lambda x: x['start_time'])
     return flask.render_template('index.html', hackathons=resp_hackathons)
