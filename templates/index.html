@@ -40,7 +40,7 @@
 {%- for col in row %}
 <div class="span3">
     <h4>{{ col['name'] }}</h4>
-    <p>{{ col['description']|truncate }}</p>
+    <p>{{ col['description']|truncate|safe }}</p>
     <p><strong>Starts: </strong><script> 
         document.write(moment('{{ col['start_time'] }}').format('MMM Do[,] YYYY [at] h:mmA'));</script></p>
     <p><strong>Ends: </strong><script>

@@ -4,6 +4,7 @@ import json
 import os
 
 import flask
+import markdown2
 import requests
 
 app = flask.Flask(__name__)
@@ -18,6 +19,7 @@ def index():
         hackathons = r.json()
         for hackathon in hackathons:
             if hackathon['students_only'] and hackathon['state'] != 'complete':
+                hackathon['description'] = markdown2.markdown(hackathon['description'])
                 resp_hackathons.append(hackathon)
             elif hackathon['state'] == 'complete':
                 complete = True
